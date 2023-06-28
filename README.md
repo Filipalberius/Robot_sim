@@ -8,6 +8,7 @@ Some testing is provided in the form of command files that test the performance 
 
 The commands:
 
-"PLACE x y heading"  - to place the robot in the grid.
-"MOVE"  - to take a step
-"RIGHT", "LEFT"  - to turn right or left
+"PLACE x y heading"  - to place the robot in the grid. \n
+"MOVE"  - to take a step. \n
+"RIGHT", "LEFT"  - to turn right or left. \n
+"REPORT"  - To print a visual representation of the grid. 
