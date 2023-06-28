@@ -20,6 +20,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="commands.txt" />
+    <Text Include="commands.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="testTurning.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="testPlace.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="testMove.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="testErrors.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

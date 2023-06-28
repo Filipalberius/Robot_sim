@@ -5,14 +5,12 @@
 #include <map>
 using namespace std;
 
-// Create a typedef for convenience
-typedef vector<vector<char>> Grid;
-
 class Robot {
     public:
         Robot(int rows, int cols){
             // Initialize the grid
-            grid = initializeGrid(rows, cols);
+            gridRows = rows;
+            gridCols = cols;
         }
 
         // Parser for lines in text input files
@@ -66,35 +64,30 @@ class Robot {
         }
 
     private:
+        int gridCols;
+        int gridRows;
+
         int row = -1;
         int col = -1;
         int heading = -1;
 
-        Grid grid;
-
+        // Numerical representation of headings enables some efficient handling of turning
         map<string, int> heading_to_id{{"NORTH", 0}, {"EAST", 1}, {"SOUTH", 2}, {"WEST", 3}};
         map<int, string> id_to_heading{{0, "NORTH"}, {1, "EAST"}, {2, "SOUTH"}, {3, "WEST"}};
 
-        // Function to initialize the grid with empty spaces
-        Grid initializeGrid(int rows, int cols) {
-            Grid grid(rows, vector<char>(cols, '-'));
-            return grid;
-        }
-
         void placeRobot(int x, int y, int f) {
-            if (x > -1 && x < grid.size() && y > -1 && y < grid[0].size()) {
+            if (x > -1 && x < gridRows && y > -1 && y < gridCols) {
                 row = x;
                 col = y;
                 heading = f;
             }
             else {
-                throw "Can't place the robot outside the grid!";
+                throw "The robot can't be placed outside the grid!";
             }
         }
 
         void moveForward() {
             bool success = false;
-            grid[row][col] = '-';
 
             switch (heading) {
                 case 0: // North
@@ -104,18 +97,17 @@ class Robot {
                     }
                     break;
                 case 1: // East
-                    if (col < grid.size() - 1) {
+                    if (col < gridRows - 1) {
                         col++;
                         success = true;
                     }
                     break;
                 case 2: // South
-                    if (row < grid[0].size() - 1) {
+                    if (row < gridCols - 1) {
                         row++;
                         success = true;
                     }
                     break;
-
                 case 3: // West
                     if (col > 0) {
                         col--;
@@ -124,19 +116,17 @@ class Robot {
                     break;
                }
 
-            grid[row][col] = 'x';
-
             if (!success) {
                 throw "Out of bounds! Can't perform move.";
             }
         }
 
         void turnLeft() {
-            heading = (heading - 1 + 4) % 4;
+            heading = (heading - 1 + 4) % 4; // decrease heading with overflow from 0 to 4 (north to west)
         }
 
         void turnRight() {
-            heading = (heading + 1) % 4;
+            heading = (heading + 1) % 4; // increase heading with overflow from 4 to 0 (west to north)
         }
 
         void report() {
@@ -146,6 +136,11 @@ class Robot {
 
         // Function to print the grid
         void printGrid() {
+            // Create visual representation of grid
+            vector<vector<char>> grid(gridRows, vector<char>(gridCols, '-'));
+
+            grid[row][col] = 'x';
+
             for (const auto& row : grid) {
                 for (const auto& cell : row) {
                     cout << cell << ' ';
@@ -161,11 +156,11 @@ int main() {
     const int GRID_COLS = 5;
 
     // Read commands from the text file
-    ifstream inputFile("commands.txt");
+    ifstream inputFile("testErrors.txt");
     string command;
     Robot robot(GRID_ROWS, GRID_COLS);
 
-    while (std::getline(inputFile, command)) {
+    while (getline(inputFile, command)) {
         // Handle the command and update the robot and grid accordingly
         robot.runCommand(command);
     }

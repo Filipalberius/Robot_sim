@@ -5,8 +5,6 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Robot_sim", "Robot_sim\Robot_sim.vcxproj", "{F3935862-23C5-4ABC-A5E1-53EC7A61E01D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_Robot", "Test_Robot\Test_Robot.vcxproj", "{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,14 +21,6 @@ Global
 		{F3935862-23C5-4ABC-A5E1-53EC7A61E01D}.Release|x64.Build.0 = Release|x64
 		{F3935862-23C5-4ABC-A5E1-53EC7A61E01D}.Release|x86.ActiveCfg = Release|Win32
 		{F3935862-23C5-4ABC-A5E1-53EC7A61E01D}.Release|x86.Build.0 = Release|Win32
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Debug|x64.ActiveCfg = Debug|x64
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Debug|x64.Build.0 = Debug|x64
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Debug|x86.ActiveCfg = Debug|Win32
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Debug|x86.Build.0 = Debug|Win32
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Release|x64.ActiveCfg = Release|x64
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Release|x64.Build.0 = Release|x64
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Release|x86.ActiveCfg = Release|Win32
-		{6D73C747-ED82-4CEC-8E90-AAFD13BB19EF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
