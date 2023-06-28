@@ -87,46 +87,40 @@ class Robot {
         }
 
         void moveForward() {
-            bool success = false;
+            int tmpRow = row;
+            int tmpCol = col;
 
             switch (heading) {
-                case 0: // North
-                    if (row > 0) {
-                        row--;
-                        success = true;
-                    }
+                case 0:  // North
+                    tmpRow--;
                     break;
-                case 1: // East
-                    if (col < gridRows - 1) {
-                        col++;
-                        success = true;
-                    }
+                case 1:  // East
+                    tmpCol++;
                     break;
-                case 2: // South
-                    if (row < gridCols - 1) {
-                        row++;
-                        success = true;
-                    }
+                case 2:  // South
+                    tmpRow++;
                     break;
-                case 3: // West
-                    if (col > 0) {
-                        col--;
-                        success = true;
-                    }
+                case 3:  // West
+                    tmpCol--;
                     break;
                }
 
-            if (!success) {
+            // Check if move is legal
+            if (tmpCol < 0 || tmpCol > gridCols-1 || tmpRow < 0 || tmpRow > gridRows-1) {
                 throw "Out of bounds! Can't perform move.";
+            } else {
+                row = tmpRow;
+                col = tmpCol;
             }
+
         }
 
         void turnLeft() {
-            heading = (heading - 1 + 4) % 4; // decrease heading with overflow from 0 to 4 (north to west)
+            heading = (heading - 1 + 4) % 4; // decrease heading with overflow from 0 to 3 (north to west)
         }
 
         void turnRight() {
-            heading = (heading + 1) % 4; // increase heading with overflow from 4 to 0 (west to north)
+            heading = (heading + 1) % 4; // increase heading with overflow from 3 to 0 (west to north)
         }
 
         void report() {
@@ -156,7 +150,7 @@ int main() {
     const int GRID_COLS = 5;
 
     // Read commands from the text file
-    ifstream inputFile("testErrors.txt");
+    ifstream inputFile("commands.txt");
     string command;
     Robot robot(GRID_ROWS, GRID_COLS);
 
