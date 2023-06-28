@@ -6,9 +6,9 @@ What command file is run can be configured in the main function.
 
 Some testing is provided in the form of command files that test the performance of the robot given the constraints provided.
 
-The commands:
+## The commands:
 
-"PLACE x y heading"  - to place the robot in the grid. \n
-"MOVE"  - to take a step. \n
-"RIGHT", "LEFT"  - to turn right or left. \n
+"PLACE x y heading"  - to place the robot in the grid. <br>
+"MOVE"  - to take a step. <br>
+"RIGHT", "LEFT"  - to turn right or left. <br>
 "REPORT"  - To print a visual representation of the grid. 
