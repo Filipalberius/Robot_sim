@@ -7,18 +7,18 @@
 
 using namespace std;
 
-int main() {
-    // Define the dimensions of the grid
+int main(int argc, char* argv[]) {
     const int GRID_ROWS = 5;
     const int GRID_COLS = 5;
 
-    // Read commands from the text file
-    ifstream inputFile("../../../resources/commands.txt");
+    string commandFile = "../../../resources/";
+    commandFile.append(argv[1]);
+
+    ifstream inputFile(commandFile);
     string command;
     Robot robot(GRID_ROWS, GRID_COLS);
 
     while (getline(inputFile, command)) {
-        // Handle the command and update the robot and grid accordingly
         robot.runCommand(command);
     }
 

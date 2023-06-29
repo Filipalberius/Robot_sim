@@ -16,23 +16,29 @@ public:
     void runCommand(string command);
 
 private:
-  int gridCols;
-  int gridRows;
+    int gridCols;
+    int gridRows;
 
-  int row = -1;
-  int col = -1;
-  int heading = -1;
+    int row = -1;
+    int col = -1;
+    int heading = -1;
 
-  // Numerical representation of headings enables some efficient handling of turning
-  map<string, int> heading_to_id{{"NORTH", 0}, {"EAST", 1}, {"SOUTH", 2}, {"WEST", 3}};
-  map<int, string> id_to_heading{{0, "NORTH"}, {1, "EAST"}, {2, "SOUTH"}, {3, "WEST"}};
+    map<string, int> heading_to_id{{"NORTH", 0}, {"EAST", 1}, {"SOUTH", 2}, {"WEST", 3}};
+    map<int, string> id_to_heading{{0, "NORTH"}, {1, "EAST"}, {2, "SOUTH"}, {3, "WEST"}};
 
-  void placeRobot(int x, int y, int f);
-  void moveForward();
-  void turnLeft();
-  void turnRight();
-  void report();
-  void printGrid();
+    void placeRobot(int x, int y, int f);
+
+    void moveForward();
+
+    void turnLeft();
+
+    void turnRight();
+
+    void report();
+
+    bool positionValid(int row, int col);
+
+    void printGrid();
 };
 
 #endif

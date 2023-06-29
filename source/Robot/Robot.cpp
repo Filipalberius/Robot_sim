@@ -3,12 +3,10 @@
 using namespace std;
 
 Robot::Robot(int rows, int cols){
-    // Initialize the grid
     gridRows = rows;
     gridCols = cols;
 }
 
-// Parser for lines in text input files
 void Robot::runCommand(string command) {
     istringstream commandStream(command);
     string prompt;
@@ -19,7 +17,6 @@ void Robot::runCommand(string command) {
         string y;
         string f;
 
-        // If PLACE command: get pose from rest of line
         commandStream >> x;
         commandStream >> y;
         commandStream >> f;
@@ -31,7 +28,7 @@ void Robot::runCommand(string command) {
             cerr << msg << endl;
         }
     }
-    else if (row != -1) {  // Check Robot is placed
+    else if (row != -1) { 
         if (prompt == "MOVE") {
             try {
                 moveForward();
@@ -88,22 +85,29 @@ void Robot::moveForward() {
             break;
        }
 
-    // Check if move is legal
-    if (tmpCol < 0 || tmpCol > gridCols-1 || tmpRow < 0 || tmpRow > gridRows-1) {
-        throw "Out of bounds! Can't perform move.";
-    } else {
+    if (positionValid(tmpRow, tmpCol)) {
         row = tmpRow;
         col = tmpCol;
+    } else {
+        throw "Out of bounds! Can't perform move.";
     }
 
 }
 
+bool Robot::positionValid(int row, int col){
+    if (col < 0 || col > gridCols-1 || row < 0 || row > gridRows-1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 void Robot::turnLeft() {
-    heading = (heading - 1 + 4) % 4; // decrease heading with overflow from 0 to 3 (north to west)
+    heading = (heading - 1 + 4) % 4;
 }
 
 void Robot::turnRight() {
-    heading = (heading + 1) % 4; // increase heading with overflow from 3 to 0 (west to north)
+    heading = (heading + 1) % 4;
 }
 
 void Robot::report() {
@@ -111,9 +115,7 @@ void Robot::report() {
     cout << "heading: " << id_to_heading[heading] << endl;
 }
 
-// Function to print the grid
 void Robot::printGrid() {
-    // Create visual representation of grid
     vector<vector<char>> grid(gridRows, vector<char>(gridCols, '-'));
 
     grid[row][col] = 'x';
