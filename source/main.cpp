@@ -3,7 +3,8 @@
 #include <sstream>
 #include <vector>
 #include <map>
-#include "Robot.h"
+#include "Robot/Robot.h"
+
 using namespace std;
 
 int main() {
@@ -12,7 +13,7 @@ int main() {
     const int GRID_COLS = 5;
 
     // Read commands from the text file
-    ifstream inputFile("commands.txt");
+    ifstream inputFile("../../../resources/commands.txt");
     string command;
     Robot robot(GRID_ROWS, GRID_COLS);
 
